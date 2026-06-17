@@ -303,38 +303,62 @@ canvas {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
   header {
-    padding: 1rem;
-    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
   }
   
   .header-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
   }
   
   h1 {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+  }
+  h1 svg {
+    width: 18px;
+    height: 18px;
   }
   
   .subtitle {
-    display: none; /* Hide subtitle to save vertical space */
+    display: none;
   }
   
   .controls {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
+    width: 100%;
+  }
+  
+  .control-group {
+    width: 100%;
   }
   
   .control-group[style] {
     grid-column: 1 / -1;
     max-width: 100% !important;
   }
+  
+  select, input[type="text"] {
+    width: 100%;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.8rem;
+    text-overflow: ellipsis;
+  }
 
   .btn {
-    width: 100%;
+    padding: 0.4rem 0.5rem;
+    font-size: 0; /* Hide text */
+    width: auto;
     justify-content: center;
+  }
+  
+  .btn svg {
+    margin: 0;
+    width: 18px;
+    height: 18px;
   }
 
   /* Make tooltip a bottom sheet */
@@ -345,10 +369,11 @@ canvas {
     width: 100% !important;
     border-radius: 16px 16px 0 0;
     transform: translateY(100%);
-    pointer-events: auto; /* allow scrolling text */
-    max-height: 45vh;
+    pointer-events: auto;
+    max-height: 50vh;
     overflow-y: auto;
-    padding: 1.25rem;
+    padding: 1rem;
+    box-shadow: 0 -10px 25px rgba(0,0,0,0.5);
   }
   
   .detail-panel.visible {
@@ -356,6 +381,6 @@ canvas {
   }
   
   .legend {
-    display: none; /* Legend takes too much space on mobile */
+    display: none;
   }
 }
