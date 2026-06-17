@@ -179,9 +179,18 @@ function App() {
         <div className={`detail-panel ${hoveredJob ? 'visible' : ''}`} style={tooltipStyle}>
           {hoveredJob && (
             <>
-              <div className="detail-header">
-                <div className="detail-sector">{hoveredJob.sector}</div>
-                <div className="detail-title">{hoveredJob.name}</div>
+              <div className="detail-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <div>
+                  <div className="detail-sector">{hoveredJob.sector}</div>
+                  <div className="detail-title">{hoveredJob.name}</div>
+                </div>
+                <button 
+                  onClick={() => setHoveredJob(null)}
+                  style={{ background: 'transparent', border: 'none', color: '#9ca3af', cursor: 'pointer', padding: '4px' }}
+                  aria-label="Close"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
               </div>
               
               <div className="detail-grid">

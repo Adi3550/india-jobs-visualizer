@@ -232,6 +232,22 @@ export default function Treemap({ data, metric, searchQuery, onHover }: TreemapP
     }
   };
 
+  const handleTouch = (e: React.TouchEvent<HTMLCanvasElement>) => {
+    const rect = canvasRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const touch = e.touches[0];
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+
+    const leaf = nodesRef.current.find(l => x >= l.x0 && x <= l.x1 && y >= l.y0 && y <= l.y1);
+    
+    if (leaf) {
+      onHover(leaf.data, touch.clientX, touch.clientY);
+    } else {
+      onHover(null, 0, 0);
+    }
+  };
+
   return (
     <div className="treemap-container" style={{ position: 'relative', width: '100%', height: '100%' }}>
       {zoomedSector && (
@@ -247,8 +263,9 @@ export default function Treemap({ data, metric, searchQuery, onHover }: TreemapP
         ref={canvasRef} 
         onMouseMove={handleMouseMove}
         onMouseLeave={() => onHover(null, 0, 0)}
+        onTouchStart={handleTouch}
         onClick={handleClick}
-        style={{ cursor: 'pointer' }}
+        style={{ cursor: 'pointer', touchAction: 'none' }}
       />
     </div>
   );
